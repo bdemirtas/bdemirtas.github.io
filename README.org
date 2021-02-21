@@ -1,0 +1,30 @@
+#+title: Publishing org-mode projects on GitHub Pages
+#+author: Burak Demirtas <burak@kodpanik.com>
+
+Learn more about GitHub Pages at [[https://pages.github.com/]]
+
+* How to run the blog locally?
+  - or Use Python's =http.server= module to locally render the pages,
+    #+BEGIN_SRC shell -n
+      # Python 3.7 >=
+      python3 -m http.server --directory=public/
+
+      # Open http://localhost:8000/ in the Web browser.
+    #+END_SRC
+
+* Org-mode
+Org-mode is [[http://www.gnu.org/philosophy/free-sw.en.html][Free Software]] and part of [[https://www.gnu.org/s/emacs/][GNU Emacs]]. It's a simple
+document format ("Org") with a powerful and intuitive interface
+(org-mode) that can [[http://orgmode.org/org.html#Exporting][export]] and [[http://orgmode.org/org.html#Publishing][publish]] to html, LaTeX, ascii, odt
+amongst others, and [[http://orgmode.org/org.html#Working-with-source-code][evaluate source code]].
+
+The org-mode manual can be accessed here: [[http://orgmode.org/org.html]].
+
+The main place for Org development is the mailing list, available on
+[[http://dir.gmane.org/gmane.emacs.orgmode][Gmane]].
+
+* Building locally
+Org-mode is part of GNU Emacs.  See how to obtain GNU Emacs on your OS
+here: [[https://www.gnu.org/software/emacs/download.html]].
+
+To get the latest version of Org see [[http://orgmode.org]].
