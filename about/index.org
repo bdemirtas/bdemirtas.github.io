@@ -1,0 +1,13 @@
+#+title: About
+#+filetags: about
+
+
+#+ATTR_HTML: :class :width 50% :height center no-border:
+[[../images/about/profile.png]]
+
+I'm a software developer based in Montreal, Canada. I'm mostly a back-end developer worked on various projects in the last 10 years. I developed and help multiple companies to do a transition from a monolithic application to a microservice with Kafka streaming platform. I have some interest in optimization and compression algorithms. I'm a big fan of TDD and advocate a lot around me to the values tests bring to the code.
+
+I'm a new emacser, using for almost a year now and really impressed about it.
+I've decoded not long ago to slowly move my development environment to Emacs and get rid of most of the software I use to use. I decided to use Emacs Vanilla and add my own customization. I couldn't find a existing configration to suit my workflow.
+
+If you want to get in contact with me, please send it to burak@kodpanik.com
