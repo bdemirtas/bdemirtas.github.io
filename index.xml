@@ -9,26 +9,26 @@
      xmlns:georss="http://www.georss.org/georss"
      xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
      xmlns:media="http://search.yahoo.com/mrss/"><channel>
-  <title>Articles</title>
+  <title></title>
   <atom:link href="http://example.com/index.xml" rel="self" type="application/rss+xml" />
   <link>http://example.com/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Mon, 22 Feb 2021 00:30:58 +0000</pubDate>
-  <lastBuildDate>Mon, 22 Feb 2021 00:30:58 +0000</lastBuildDate>
+  <pubDate>Wed, 24 Feb 2021 03:59:59 +0000</pubDate>
+  <lastBuildDate>Wed, 24 Feb 2021 03:59:59 +0000</lastBuildDate>
   <generator>Emacs 25.2 Org-mode 9.4.4</generator>
-  <webMaster>runner@fv-az60-784 (nil)</webMaster>
+  <webMaster>runner@fv-az12-550 (nil)</webMaster>
   <image>
     <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
-    <title>Articles</title>
+    <title></title>
     <link>http://example.com/</link>
   </image>
 
   <ul class="org-ul">
     <li><p>
-      <b><a href="template.html">Articles</a></b>
+      <b><a href="template.html">First Article</a></b>
     </p>
-    <p class='pubdate'>by Burak Demirtas on Feb 22, 2021.</p></li>
+    <p class='pubdate'>by Burak Demirtas on Feb 24, 2021.</p></li>
   </ul>
 </channel>
 </rss>
