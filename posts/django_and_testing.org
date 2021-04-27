@@ -1,0 +1,132 @@
+#+AUTHOR: Burak Demirtas
+#+TITLE: How to write effective tests in Python
+
+**** Backstory
+In 10 years of career in software development, I've seen great applications develop with good intention from developers with deeply or badly writing tests.
+
+Most of the projects I've works, tests was develop with unittest to mock functions or methods behaviour. Unittest by itself isn't the problem, I will say the way the developers use unittest isn't correct. Let me clarify, unittest is good to test a function or subsets of behaviour but aren't excellent to dealing when the test requires a database or a caching system like Redis for example.
+Let's keep this short, unittest in python aren't suitable for complex testing.
+
+One mistake I've seen often is having numerous fixtures creating manually objects with different complexity to the point changing one of them can result in breaking one or multiple tests which cause of having in a certain point of time, unmaintainable fixtures.
+
+**** How to adjust testing pattern over time
+I'm going to try to adjust this issue by using a few libraries that will solve mostly all those mistakes when writing tests in Python. In my example, I will use Django as web framework, pytest, pytest-django, factory-boy, pytest-factory and pytest-check.
+
+Those libraries combined and configured can be very powerful to set up a good testing pattern in any applications. Let's start by set up a basic Django app, in my case, I will use [[https://docs.djangoproject.com/en/3.2/intro/tutorial01/][Django documentation]] that contains a basic example for a poll app.
+
+In addition, type the following into terminal; this creates a new application folder & key files we will be using for our example:
+
+#+begin_src sh
+    django-admin startproject kodpanik
+    python manage.py startapp polls
+#+end_src
+
+You should have exactly this structure in your Django project.
+#+begin_src sh
+  ├── kodpanik
+  │   ├── asgi.py
+  │   ├── __init__.py
+  │   ├── settings.py
+  │   ├── urls.py
+  │   └── wsgi.py
+  ├── manage.py
+  └── polls
+  ├── admin.py
+  ├── apps.py
+  ├── __init__.py
+  ├── migrations
+  │   └── __init__.py
+  ├── models.py
+  ├── tests.py
+  └── views.py
+#+end_src
+
+To configure the testing pattern, thoses packages will need to be installed and pytest.ini file to the root of the project.
+
+#+begin_src sh
+  pytest-django==4.2.0
+  factory-boy==3.2.0
+  pytest-factoryboy==2.1.0
+  pytest-check==1.0.1
+#+end_src
+
+This config tells pytest which settings file to use when running tests.
+
+#+begin_src ini
+[pytest]
+DJANGO_SETTINGS_MODULE = kodpanik.settings
+python_files = tests.py test_*.py *_tests.py
+#+end_src
+
+We're going to configure pytest with factory-boy. I'm guessing many are asking why pytest.
+One of the greatest strengths of pytest it leverages free functions, decorators and context managers in a such way writing test with become unbelievable easy. Also, a note: pytest can run unittest perfectly, if the project you're working already have unittest, pytest can run them with no hassle. But I'm not going to go in details about pytest, this is another topic to discuss.
+
+Since we already added an app in the Django project, we're going to remove the tests.py in the poll app and create a folder named tests and create two files named fixtures.py and test_models.py. The structure folder should look like this.
+
+#+begin_src sh
+  polls
+  ├── admin.py
+  ├── apps.py
+  ├── __init__.py
+  ├── migrations
+  │   ├── __init__.py
+  ├── models.py
+  ├── tests
+  │   ├── fixtures.py
+  │   └── test_models.py
+  ├── urls.py
+  └── views.py
+#+end_src
+
+At this point, if you followed the basic tutorial on Django documentation about polls, you should already have a model looking similar under polls/models.py
+
+#+begin_src python
+class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField("date published")
+#+end_src
+
+In the fixtures.py file, we will use factory-boy to provide a new instance of an existing object that will only exist during the test execution. Django-pytest library will make sure to rollbacks every transaction for each tests.
+
+#+begin_src python
+  import factory
+  import pytz
+  from faker import Faker
+
+  from polls import models
+
+  faker = Faker()
+
+  class QuestionFactory(factory.django.DjangoModelFactory):
+      class Meta:
+          model = models.Question
+
+      question_text = faker.text()
+      pub_date = faker.date_time(pytz.utc)
+#+end_src
+
+Once the question factory is added, make sure to add the conftest.py in a new file in the tests folder.
+This is a file pytest will load automatically and fixtures defined in a conftest.py can be used by any test in that package without needing to import them.
+
+#+begin_src python
+  from pytest_factoryboy import register
+
+  from polls.tests.fixtures import QuestionFactory
+
+  register(QuestionFactory)
+#+end_src
+
+This will not only allow to isolate but ensure each test aren't affected by another test run previously. By combining pytest and factory-boy, each test will get an instance of the model but still be able to override it. Now, how do we write a test by using all those libraries.
+By adding this code, you should be able to test the model question without writing a single function to generate a fixture model, factory-boy is taking care of it for you.
+
+#+begin_src python
+  import pytest
+
+
+  @pytest.mark.django_db
+  def test_question(question_factory, check):
+      question = question_factory(question_text="hey this is a text")
+      check.equal(question.question_text, "hey this is a text")
+#+end_src
+
+Factory-boy gives also the flexibility to fully customize it. Not only at this point test become very trivial to write but also more accurate thanks to pytest reverting transaction for each test and data aren't persisted anymore.

@@ -34,6 +34,14 @@
 
 (defvar me/website-html-head
   "<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-52304415-1'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52304415-1');
+</script>
 <link rel='stylesheet' href='https://code.cdn.mozilla.net/fonts/fira.css'>
 <link rel='stylesheet' href='/css/site.css?v=2' type='text/css'/>
 <link rel='stylesheet' href='/css/custom.css' type='text/css'/>
@@ -99,7 +107,7 @@ publishing directory. Returns output file name."
          :exclude ,(regexp-opt '("README.org" "draft"))
          :auto-sitemap t
          :sitemap-filename "index.org"
-         :sitemap-title ""
+         :sitemap-title "Blog about software development and architecture."
          :sitemap-format-entry me/org-sitemap-format-entry
          :sitemap-style list
          :sitemap-sort-files anti-chronologically
@@ -146,8 +154,8 @@ publishing directory. Returns output file name."
         ("rss"
          :base-directory "posts"
          :base-extension "org"
-         :html-link-home "http://example.com/"
-         :rss-link-home "http://example.com/"
+         :html-link-home "http://kodpanik.com/"
+         :rss-link-home "http://kodpanik.com/"
          :html-link-use-abs-url t
          :rss-extension "xml"
          :publishing-directory "./public"

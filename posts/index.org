@@ -1,4 +1,4 @@
-#+TITLE: 
+#+TITLE: Blog about software development and architecture.
 
-- *[[file:template.org][First Article]]*
-  #+html: <p class='pubdate'>by Burak Demirtas on Feb 23, 2021.</p>
+- *[[file:django_and_testing.org][How to write tests efficiently in Python]]*
+  #+html: <p class='pubdate'>by Burak Demirtas on Apr 25, 2021.</p>
