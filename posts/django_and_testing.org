@@ -130,3 +130,18 @@ By adding this code, you should be able to test the model question without writi
 #+end_src
 
 Factory-boy gives also the flexibility to fully customize it. Not only at this point test become very trivial to write but also more accurate thanks to pytest reverting transaction for each test and data aren't persisted anymore.
+
+**** Run pytest
+Running tests with pytest is really, type the following command in the terminal, pytest will discover and run all tests.
+#+begin_src  sh
+  plugins: factoryboy-2.1.0, pytest_check-1.0.1, django-4.2.0, Faker-8.1.0
+  collected 1 item
+
+  polls/tests/test_models.py .  [100%]
+
+  =============================  1 passed in 0.26s ====================
+
+#+end_src
+
+
+#+INCLUDE: "../disquss.inc"
