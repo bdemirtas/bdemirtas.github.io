@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Apr 27, 2021 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to write effective tests in Python</title>
+<meta name="generator" content="Org mode">
+<meta name="author" content="Burak Demirtas">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script async src='https://www.googletagmanager.com/gtag/js?id=UA-52304415-1'></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-52304415-1');
+</script>
+<link rel='stylesheet' href='https://code.cdn.mozilla.net/fonts/fira.css'>
+<link rel='stylesheet' href='/css/site.css?v=2' type='text/css'/>
+<link rel='stylesheet' href='/css/custom.css' type='text/css'/>
+<link rel='stylesheet' href='/css/syntax-coloring.css' type='text/css'/>
+<script type="text/javascript">
+// @license magnet:?xt=urn:btih:e95b018ef3580986a04669f1b5879592219e2a7a&dn=public-domain.txt Public Domain
+<!--/*--><![CDATA[/*><!--*/
+     function CodeHighlightOn(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.add("code-highlighted");
+         target.classList.add("code-highlighted");
+       }
+     }
+     function CodeHighlightOff(elem, id)
+     {
+       var target = document.getElementById(id);
+       if(null != target) {
+         elem.classList.remove("code-highlighted");
+         target.classList.remove("code-highlighted");
+       }
+     }
+    /*]]>*///-->
+// @license-end
+</script>
+</head>
+<body>
+<div id="org-div-home-and-up">
+ <a accesskey="h" href="/"> UP </a>
+ |
+ <a accesskey="H" href="/"> HOME </a>
+</div><header id="top" class="status">
+<div class='intro'>
+  <h1>
+    <span class="black">Burak Demirtas</span>
+  </h1>
+  <p>Software developer</p>
+</div>
+
+<div class='nav'>
+<ul>
+<li><a href='/'>Blog</a>.</li>
+<li><a href='http://github.com/bdemirtas'>GitHub</a>.</li>
+<li><a href='/index.xml'>RSS</a>.</li>
+<li><a href='/about/'>About</a></li>
+</ul>
+</div>
+</header>
+<main id="content">
+<header>
+<h1 class="title">How to write effective tests in Python</h1>
+</header>
+<section id="outline-container-org0b07d2c" class="outline-2">
+<h2 id="org0b07d2c">Backstory</h2>
+<div class="outline-text-2" id="text-org0b07d2c">
+<p>
+In 10 years of career in software development, I&rsquo;ve seen great applications develop with good intention from developers with deeply or badly writing tests.
+</p>
+
+<p>
+Most of the projects I&rsquo;ve works, tests was develop with unittest to mock functions or methods behaviour. Unittest by itself isn&rsquo;t the problem, I will say the way the developers use unittest isn&rsquo;t correct. Let me clarify, unittest is good to test a function or subsets of behaviour but aren&rsquo;t excellent to dealing when the test requires a database or a caching system like Redis for example.
+Let&rsquo;s keep this short, unittest in python aren&rsquo;t suitable for complex testing.
+</p>
+
+<p>
+One mistake I&rsquo;ve seen often is having numerous fixtures creating manually objects with different complexity to the point changing one of them can result in breaking one or multiple tests which cause of having in a certain point of time, unmaintainable fixtures.
+</p>
+</div>
+</section>
+
+<section id="outline-container-orgaa83e0c" class="outline-2">
+<h2 id="orgaa83e0c">How to adjust testing pattern over time</h2>
+<div class="outline-text-2" id="text-orgaa83e0c">
+<p>
+I&rsquo;m going to try to adjust this issue by using a few libraries that will solve mostly all those mistakes when writing tests in Python. In my example, I will use Django as web framework, pytest, pytest-django, factory-boy, pytest-factory and pytest-check.
+</p>
+
+<p>
+Those libraries combined and configured can be very powerful to set up a good testing pattern in any applications. Let&rsquo;s start by set up a basic Django app, in my case, I will use <a href="https://docs.djangoproject.com/en/3.2/intro/tutorial01/">Django documentation</a> that contains a basic example for a poll app.
+</p>
+
+<p>
+In addition, type the following into terminal; this creates a new application folder &amp; key files we will be using for our example:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">django-admin startproject kodpanik
+python manage.py startapp polls
+</pre>
+</div>
+
+<p>
+You should have exactly this structure in your Django project.
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">&#9500;&#9472;&#9472; kodpanik
+&#9474;&#160;&#160; &#9500;&#9472;&#9472; asgi.py
+&#9474;&#160;&#160; &#9500;&#9472;&#9472; __init__.py
+&#9474;&#160;&#160; &#9500;&#9472;&#9472; settings.py
+&#9474;&#160;&#160; &#9500;&#9472;&#9472; urls.py
+&#9474;&#160;&#160; &#9492;&#9472;&#9472; wsgi.py
+&#9500;&#9472;&#9472; manage.py
+&#9492;&#9472;&#9472; polls
+&#9500;&#9472;&#9472; admin.py
+&#9500;&#9472;&#9472; apps.py
+&#9500;&#9472;&#9472; __init__.py
+&#9500;&#9472;&#9472; migrations
+&#9474;&#160;&#160; &#9492;&#9472;&#9472; __init__.py
+&#9500;&#9472;&#9472; models.py
+&#9500;&#9472;&#9472; tests.py
+&#9492;&#9472;&#9472; views.py
+</pre>
+</div>
+
+<p>
+To configure the testing pattern, thoses packages will need to be installed and pytest.ini file to the root of the project.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">pytest-django==4.2.0
+factory-boy==3.2.0
+pytest-factoryboy==2.1.0
+pytest-check==1.0.1
+</pre>
+</div>
+
+<p>
+This config tells pytest which settings file to use when running tests.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ini">[pytest]
+DJANGO_SETTINGS_MODULE = kodpanik.settings
+python_files = tests.py test_*.py *_tests.py
+</pre>
+</div>
+
+<p>
+We&rsquo;re going to configure pytest with factory-boy. I&rsquo;m guessing many are asking why pytest.
+One of the greatest strengths of pytest it leverages free functions, decorators and context managers in a such way writing test with become unbelievable easy. Also, a note: pytest can run unittest perfectly, if the project you&rsquo;re working already have unittest, pytest can run them with no hassle. But I&rsquo;m not going to go in details about pytest, this is another topic to discuss.
+</p>
+
+<p>
+Since we already added an app in the Django project, we&rsquo;re going to remove the tests.py in the poll app and create a folder named tests and create two files named fixtures.py and test<sub>models.py</sub>. The structure folder should look like this.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">polls
+&#9500;&#9472;&#9472; admin.py
+&#9500;&#9472;&#9472; apps.py
+&#9500;&#9472;&#9472; __init__.py
+&#9500;&#9472;&#9472; migrations
+&#9474;&#160;&#160; &#9500;&#9472;&#9472; __init__.py
+&#9500;&#9472;&#9472; models.py
+&#9500;&#9472;&#9472; tests
+&#9474;&#160;&#160; &#9500;&#9472;&#9472; fixtures.py
+&#9474;&#160;&#160; &#9492;&#9472;&#9472; test_models.py
+&#9500;&#9472;&#9472; urls.py
+&#9492;&#9472;&#9472; views.py
+</pre>
+</div>
+
+<p>
+At this point, if you followed the basic tutorial on Django documentation about polls, you should already have a model looking similar under polls/models.py
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">class</span> <span class="org-type">Question</span>(models.Model):
+    <span class="org-variable-name">question_text</span> = models.CharField(max_length=200)
+    <span class="org-variable-name">pub_date</span> = models.DateTimeField(<span class="org-string">"date published"</span>)
+</pre>
+</div>
+
+<p>
+In the fixtures.py file, we will use factory-boy to provide a new instance of an existing object that will only exist during the test execution. Django-pytest library will make sure to rollbacks every transaction for each tests.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">import</span> factory
+<span class="org-keyword">import</span> pytz
+<span class="org-keyword">from</span> faker <span class="org-keyword">import</span> Faker
+
+<span class="org-keyword">from</span> polls <span class="org-keyword">import</span> models
+
+<span class="org-variable-name">faker</span> = Faker()
+
+<span class="org-keyword">class</span> <span class="org-type">QuestionFactory</span>(factory.django.DjangoModelFactory):
+    <span class="org-keyword">class</span> <span class="org-type">Meta</span>:
+        <span class="org-variable-name">model</span> = models.Question
+
+    <span class="org-variable-name">question_text</span> = faker.text()
+    <span class="org-variable-name">pub_date</span> = faker.date_time(pytz.utc)
+</pre>
+</div>
+
+<p>
+Once the question factory is added, make sure to add the conftest.py in a new file in the tests folder.
+This is a file pytest will load automatically and fixtures defined in a conftest.py can be used by any test in that package without needing to import them.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">from</span> pytest_factoryboy <span class="org-keyword">import</span> register
+
+<span class="org-keyword">from</span> polls.tests.fixtures <span class="org-keyword">import</span> QuestionFactory
+
+register(QuestionFactory)
+</pre>
+</div>
+
+<p>
+This will not only allow to isolate but ensure each test aren&rsquo;t affected by another test run previously. By combining pytest and factory-boy, each test will get an instance of the model but still be able to override it. Now, how do we write a test by using all those libraries.
+By adding this code, you should be able to test the model question without writing a single function to generate a fixture model, factory-boy is taking care of it for you.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span class="org-keyword">import</span> pytest
+
+
+<span class="org-type">@pytest.mark.django_db</span>
+<span class="org-keyword">def</span> <span class="org-function-name">test_question</span>(question_factory, check):
+    <span class="org-variable-name">question</span> = question_factory(question_text=<span class="org-string">"hey this is a text"</span>)
+    check.equal(question.question_text, <span class="org-string">"hey this is a text"</span>)
+</pre>
+</div>
+
+<p>
+Factory-boy gives also the flexibility to fully customize it. Not only at this point test become very trivial to write but also more accurate thanks to pytest reverting transaction for each test and data aren&rsquo;t persisted anymore.
+</p>
+</div>
+</section>
+</main>
+<footer id="postamble" class="status">
+<div class='footer'>
+  Copyright © 2021 <a href='mailto:burak@kodpanik.com'>Burak Demirtas</a><br>
+  Last updated on Apr 27, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.4.5).
+</div>
+</footer>
+</body>
+</html>
