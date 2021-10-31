@@ -1,0 +1,102 @@
+#+AUTHOR: Burak Demirtas
+#+TITLE: Exploiting the features of Python to write code that is clean, concise and maintainable.
+
+**** Pythonic
+    Writing code isn't hard but writing code that is clean, concise, and maintainable that follows the convention of the Python community is harder. They are a lot of different ways to implement the same function, class, or feature.
+    Some of them are clean, sometimes confusing, or really bad writing that is hard to understand what it does exactly but in the end, the goal is to have a code that follows and naturally flows more in Python conventions and good practices.
+    That is the kind of code we want to write or wish often when we work and are satisfied at the end of the day with our work.
+    That's what I'm going to try to help to write pythonic code and some python mechanics that can be very helpful.
+
+**** Context Managers
+     In other languages like Java or Ruby, it's common to use ~def/ensure~ or ~try/finally~ to acquire a lock on a resource and free it later if exceptions occur. Python has the ~try/except~ but there's a better way to do it.
+     As an example, I'm going to use a virus scanner pyclamd to scan a file.
+     #+begin_src python
+       # bad
+       try:
+           virus_scanner = pyclamd.ClamdUnixSocket()
+       except pyclamd.pyclamd.ConnectionError as msg:
+           logger.error(f"Error while trying to scan the file")
+
+       result = virus_scanner.scan_file(path)
+     #+end_src
+     #+begin_src python
+       class VirusScan:
+           def __enter__(self):
+               self.clamd = clamd.ClamdUnixSocket()
+               return self
+
+           def __exit__(self, exc_type, exc_val, exc_tb):
+               if exc_type == clamd.ConnectionError:
+                   print("No virus scanner found")
+               else:
+                   self.clamd._close_socket()
+
+           def scan_files(self, path):
+               return self.clamd.scan(path)
+
+       with VirusScan() as virus_sanner:
+           results = virus_scanner.scan_files("/tmp")
+           for file in results:
+               print(file)
+     #+end_src
+     Code above shows the usage of what is called in Python *With Statement Context Managers* that defines the entry and the exit from.
+     By encapsulating the virus scanner in class and defining the ~__enter_~_ and ~__exit__~ methods, the object can be used with the statement
+     that will open and close a connection to the virus scanner without adding extra code but also avoid using unnecessarily a ~try/except~ statement.
+
+**** Slicing
+     In the previous code, the virus scanner return a dictionary with the file name as key and tuple as value with other information about the scanned file.
+     Getting the data isn't clean, simple, and can be confusing for developers if they aren't familiar with the pyclamd tuple structure. There's a simple way to
+     transform the return data structure to be more pythonic and easier to manipulate.
+     #+begin_src python
+       class VirusScan:
+           def __enter__(self):
+               self.clamd = clamd.ClamdUnixSocket()
+               return self
+
+           def __exit__(self, exc_type, exc_val, exc_tb):
+               if exc_type == clamd.ConnectionError:
+                   print("No virus scanner found")
+               else:
+                   self.clamd._close_socket()
+
+           def scan_files(self, path):
+               result = self.clamd.scan(path)
+               return VirusScanFiles(result)
+
+
+       class VirusScanFiles:
+           def __init__(self, result):
+               results = [
+                   VirusScanFileStatus(filename=k, reason=v[1], status=v[0])
+                   for k, v in result.items()
+                   ]
+               self.results = results
+
+           def __len__(self):
+               return len(self.results)
+
+           def __getitem__(self, index):
+               if index >= len(self):
+                   raise IndexError
+               return self.results[index]
+
+
+       @dataclass
+       class VirusScanFileStatus:
+           filename: str
+           reason: str
+           status: str
+
+       if __name__ == "__main__":
+           with VirusScan() as virus_scanner:
+               for result in virus_scanner.scan_files("/tmp"):
+                   print(result)
+
+     #+end_src
+     Code above shows the ~VirusScan~ object returns an instance of ~VirusScanFiles~ that contain the files dictionary and transform it into a list of object ~VirusScanFileStatus~ with the file data. By defining ~__len__~ and ~__getitem~ methods,
+     it becomes possible to loop through the instance without requiring the results. Also, the ~VirusScanFiles~ encapsulate the file data that is much easier to access and readable than returning a tuple. Not only this code respect follows the good practices and be more pythonic but it's now much much easier to write unit tests.
+
+**** Conclusion
+     I recommend using those tips in your python code and of course, there's much more different way to make your code more Pythonic.
+     However, making a code more pythonic doesn't mean it fits for you what's works for me. Use the python idioms to make your code readable
+     , concise and not just because it's Pythonic it's necessarily good, the end goal is to use python features to improve your code.

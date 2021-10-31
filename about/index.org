@@ -10,4 +10,4 @@ I'm a software developer based in Montreal, Canada. I'm a back-end developer wor
 I'm a new emacser, using for few years now and really impressed about it.
 I've decided not years ago to slowly move my development environment to Emacs and get rid of most of the software I use to use. I decided to use Emacs Vanilla and add my own customization. I couldn't find a existing configration to suit my workflow. My goal for 2021 will be contributing on various open source projects to give back to the community.
 
-If you want to get in contact with me, please send it to burak@kodpanik.com
+If you want to get in contact with me, please send it to [[mailto:burak@kodpanik.com][kodpanik]].
