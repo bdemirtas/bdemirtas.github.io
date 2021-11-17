@@ -1,6 +1,6 @@
 #+TITLE: Blog about software development and architecture.
 
-- *[[file:pythonic.org][Pythonic]]*
+- *[[file:pythonic.org][Exploiting the features of Python to write code that is clean, concise and maintainable.]]*
   #+html: <p class='pubdate'>by Burak Demirtas on Oct 31, 2021.</p>
 - *[[file:django_and_testing.org][How to write tests efficiently in Python]]*
   #+html: <p class='pubdate'>by Burak Demirtas on Apr 25, 2021.</p>
