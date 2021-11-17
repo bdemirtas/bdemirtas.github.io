@@ -3,7 +3,6 @@ body {
   line-height: 1.5;
   font-size: 18px;
   background: #fff;
-  color: #666;
   margin: 0;
   border-top: 3px solid #1692cc;
 }
@@ -81,7 +80,6 @@ body code {
   background: #eee;
   border: 1px solid #ccc;
   padding: 0px 4px;
-  color: #666;
   overflow-x: auto;
   font-size: .9em;
 }
@@ -148,8 +146,8 @@ body .org-info-js_info-navigation {
   body #content,
   body #postamble {
     margin: 0 auto;
-    max-width: 700px !important;
-    width: 700px !important;
+    max-width: 800px !important;
+    width: 800px !important;
   }
 }
 body #content {
@@ -169,7 +167,7 @@ body #postamble a {
 }
 @media (min-width: 800px) {
   body #preamble {
-    width: 700px;
+    width: 800px;
     margin: 0px auto;
     position: relative;
   }

@@ -14,10 +14,10 @@
   <link>http://kodpanik.com/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Sun, 31 Oct 2021 23:09:08 +0000</pubDate>
-  <lastBuildDate>Sun, 31 Oct 2021 23:09:08 +0000</lastBuildDate>
+  <pubDate>Wed, 17 Nov 2021 06:37:09 +0000</pubDate>
+  <lastBuildDate>Wed, 17 Nov 2021 06:37:09 +0000</lastBuildDate>
   <generator>Emacs 26.3 Org-mode 9.4.6</generator>
-  <webMaster>runner@fv-az154-370 (nil)</webMaster>
+  <webMaster>runner@fv-az216-307 (nil)</webMaster>
   <image>
     <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
     <title>Blog about software development and architecture.</title>
@@ -28,11 +28,11 @@
     <li><p>
       <b><a href="pythonic.html">Exploiting the features of Python to write code that is clean, concise and maintainable.</a></b>
     </p>
-    <p class='pubdate'>by Burak Demirtas on Oct 31, 2021.</p></li>
+    <p class='pubdate'>by Burak Demirtas on Nov 17, 2021.</p></li>
     <li><p>
       <b><a href="django_and_testing.html">How to write effective tests in Python</a></b>
     </p>
-    <p class='pubdate'>by Burak Demirtas on Oct 31, 2021.</p></li>
+    <p class='pubdate'>by Burak Demirtas on Nov 17, 2021.</p></li>
   </ul>
 </channel>
 </rss>
