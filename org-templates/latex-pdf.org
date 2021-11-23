@@ -1,4 +1,4 @@
-#+EMAIL: burak@kodpanik.com
+#+EMAIL: burak@demirtas.dev
 #+OPTIONS: email:t
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS:

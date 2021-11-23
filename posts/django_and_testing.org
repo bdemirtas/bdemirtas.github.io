@@ -17,13 +17,13 @@ Those libraries combined and configured can be very powerful to set up a good te
 In addition, type the following into terminal; this creates a new application folder & key files we will be using for our example:
 
 #+begin_src sh
-    django-admin startproject kodpanik
+    django-admin startproject demirtas
     python manage.py startapp polls
 #+end_src
 
 You should have exactly this structure in your Django project.
 #+begin_src sh
-  ├── kodpanik
+  ├── demirtas
   │   ├── asgi.py
   │   ├── __init__.py
   │   ├── settings.py
@@ -54,7 +54,8 @@ This config tells pytest which settings file to use when running tests.
 
 #+begin_src ini
 [pytest]
-DJANGO_SETTINGS_MODULE = kodpanik.settings
+DJANGO_SETTINGS_MODULE = demirtas.
+settings
 python_files = tests.py test_*.py *_tests.py
 #+end_src
 
