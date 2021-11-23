@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Nov 17, 2021 -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Nov 23, 2021 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exploiting the features of Python to write code that is clean, concise and maintainable.</title>
-<meta name="generator" content="Org mode">
-<meta name="author" content="Burak Demirtas">
+<meta name="author" content="Burak Demirtas" />
+<meta name="generator" content="Org Mode" />
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script async src='https://www.googletagmanager.com/gtag/js?id=UA-52304415-1'></script>
 <script>
@@ -20,9 +20,8 @@
 <link rel='stylesheet' href='/css/site.css?v=2' type='text/css'/>
 <link rel='stylesheet' href='/css/custom.css' type='text/css'/>
 <link rel='stylesheet' href='/css/syntax-coloring.css' type='text/css'/>
-<script type="text/javascript">
+<script>
 // @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-<!--/*--><![CDATA[/*><!--*/
      function CodeHighlightOn(elem, id)
      {
        var target = document.getElementById(id);
@@ -39,7 +38,6 @@
          target.classList.remove("code-highlighted");
        }
      }
-    /*]]>*///-->
 // @license-end
 </script>
 </head>
@@ -65,13 +63,13 @@
 </ul>
 </div>
 </header>
-<main id="content">
+<main id="content" class="content">
 <header>
 <h1 class="title">Exploiting the features of Python to write code that is clean, concise and maintainable.</h1>
 </header>
-<section id="outline-container-org0b394a1" class="outline-2">
-<h2 id="org0b394a1">Pythonic</h2>
-<div class="outline-text-2" id="text-org0b394a1">
+<section id="outline-container-org8689bd8" class="outline-2">
+<h2 id="org8689bd8">Pythonic</h2>
+<div class="outline-text-2" id="text-org8689bd8">
 <p>
 Writing code isn&rsquo;t hard but writing code that is clean, concise, and maintainable that follows the convention of the Python community is harder. They are a lot of different ways to implement the same function, class, or feature.
 Some of them are clean, sometimes confusing, or really bad writing that is hard to understand what it does exactly but in the end, the goal is to have a code that follows and naturally flows more in Python conventions and good practices.
@@ -81,9 +79,9 @@ That&rsquo;s what I&rsquo;m going to try to help to write pythonic code and some
 </div>
 </section>
 
-<section id="outline-container-orgead1dd1" class="outline-2">
-<h2 id="orgead1dd1">Context Managers</h2>
-<div class="outline-text-2" id="text-orgead1dd1">
+<section id="outline-container-org8204cd8" class="outline-2">
+<h2 id="org8204cd8">Context Managers</h2>
+<div class="outline-text-2" id="text-org8204cd8">
 <p>
 In other languages like Java or Ruby, it&rsquo;s common to use <code>def/ensure</code> or <code>try/finally</code> to acquire a lock on a resource and free it later if exceptions occur. Python has the <code>try/except</code> but there&rsquo;s a better way to do it.
 As an example, I&rsquo;m going to use a virus scanner pyclamd to scan a file.
@@ -127,9 +125,9 @@ that will open and close a connection to the virus scanner without adding extra 
 </div>
 </section>
 
-<section id="outline-container-org693a949" class="outline-2">
-<h2 id="org693a949">Slicing</h2>
-<div class="outline-text-2" id="text-org693a949">
+<section id="outline-container-orgb71c7ea" class="outline-2">
+<h2 id="orgb71c7ea">Slicing</h2>
+<div class="outline-text-2" id="text-orgb71c7ea">
 <p>
 In the previous code, the virus scanner return a dictionary with the file name as key and tuple as value with other information about the scanned file.
 Getting the data isn&rsquo;t clean, simple, and can be confusing for developers if they aren&rsquo;t familiar with the pyclamd tuple structure. There&rsquo;s a simple way to
@@ -189,9 +187,9 @@ it becomes possible to loop through the instance without requiring the results. 
 </div>
 </section>
 
-<section id="outline-container-orgde8830b" class="outline-2">
-<h2 id="orgde8830b">Conclusion</h2>
-<div class="outline-text-2" id="text-orgde8830b">
+<section id="outline-container-orgfe95b6d" class="outline-2">
+<h2 id="orgfe95b6d">Conclusion</h2>
+<div class="outline-text-2" id="text-orgfe95b6d">
 <p>
 I recommend using those tips in your python code and of course, there&rsquo;s much more different way to make your code more Pythonic.
 However, making a code more pythonic doesn&rsquo;t mean it fits for you what&rsquo;s works for me. Use the python idioms to make your code readable
@@ -201,8 +199,8 @@ However, making a code more pythonic doesn&rsquo;t mean it fits for you what&rsq
 </main>
 <footer id="postamble" class="status">
 <div class='footer'>
-  Copyright © 2021 <a href='mailto:burak@kodpanik.com'>Burak Demirtas</a><br>
-  Last updated on Nov 17, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
+  Copyright © 2021 <a href='mailto:burak@demirtas.dev'>Burak Demirtas</a><br>
+  Last updated on Nov 23, 2021. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
 </div>
 </footer>
 </body>
