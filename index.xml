@@ -14,10 +14,10 @@
   <link>http://demirtas.dev/</link>
   <description><![CDATA[]]></description>
   <language>en</language>
-  <pubDate>Tue, 23 Nov 2021 01:03:01 +0000</pubDate>
-  <lastBuildDate>Tue, 23 Nov 2021 01:03:01 +0000</lastBuildDate>
+  <pubDate>Wed, 23 Feb 2022 04:06:29 +0000</pubDate>
+  <lastBuildDate>Wed, 23 Feb 2022 04:06:29 +0000</lastBuildDate>
   <generator>Emacs 26.3 Org-mode 9.4.6</generator>
-  <webMaster>runner@fv-az154-786 (nil)</webMaster>
+  <webMaster>runner@fv-az292-133 (nil)</webMaster>
   <image>
     <url>https://orgmode.org/img/org-mode-unicorn-logo.png</url>
     <title>Blog about software development and architecture.</title>
@@ -26,13 +26,13 @@
 
   <ul class="org-ul">
     <li><p>
-      <b><a href="pythonic.html">Exploiting the features of Python to write code that is clean, concise and maintainable.</a></b>
-    </p>
-    <p class='pubdate'>by Burak Demirtas on Nov 23, 2021.</p></li>
-    <li><p>
       <b><a href="django_and_testing.html">How to write effective tests in Python</a></b>
     </p>
-    <p class='pubdate'>by Burak Demirtas on Nov 23, 2021.</p></li>
+    <p class='pubdate'>by Burak Demirtas on Aug 21, 2021.</p></li>
+    <li><p>
+      <b><a href="pythonic.html">Exploiting the features of Python to write code that is clean, concise and maintainable.</a></b>
+    </p>
+    <p class='pubdate'>by Burak Demirtas on Jun 17, 2021.</p></li>
   </ul>
 </channel>
 </rss>
