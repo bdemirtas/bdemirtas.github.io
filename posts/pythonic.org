@@ -1,4 +1,5 @@
 #+AUTHOR: Burak Demirtas
+#+date: <2021-06-17>
 #+TITLE: Exploiting the features of Python to write code that is clean, concise and maintainable.
 
 **** Pythonic
@@ -100,3 +101,6 @@
      I recommend using those tips in your python code and of course, there's much more different way to make your code more Pythonic.
      However, making a code more pythonic doesn't mean it fits for you what's works for me. Use the python idioms to make your code readable
      , concise and not just because it's Pythonic it's necessarily good, the end goal is to use python features to improve your code.
+
+
+#+INCLUDE: "../disquss.inc"
