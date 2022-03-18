@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Mar 15, 2022 -->
+<!-- Mar 18, 2022 -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Exploiting the features of Python to write code that is clean, concise and maintainable.</title>
@@ -68,9 +68,9 @@
 <h1 class="title">Exploiting the features of Python to write code that is clean, concise and maintainable.</h1>
 <p class="subtitle" role="doc-subtitle">Published on Jun 17, 2021 by Burak Demirtas.</p>
 </header>
-<section id="outline-container-org2a8c550" class="outline-2">
-<h2 id="org2a8c550">Pythonic</h2>
-<div class="outline-text-2" id="text-org2a8c550">
+<section id="outline-container-orgde60ca1" class="outline-2">
+<h2 id="orgde60ca1">Pythonic</h2>
+<div class="outline-text-2" id="text-orgde60ca1">
 <p>
 Writing code isn&rsquo;t hard but writing code that is clean, concise, and maintainable that follows the convention of the Python community is harder. They are a lot of different ways to implement the same function, class, or feature.
 Some of them are clean, sometimes confusing, or really bad writing that is hard to understand what it does exactly but in the end, the goal is to have a code that follows and naturally flows more in Python conventions and good practices.
@@ -80,9 +80,9 @@ That&rsquo;s what I&rsquo;m going to try to help to write pythonic code and some
 </div>
 </section>
 
-<section id="outline-container-orgd8f5827" class="outline-2">
-<h2 id="orgd8f5827">Context Managers</h2>
-<div class="outline-text-2" id="text-orgd8f5827">
+<section id="outline-container-org1fe2cd3" class="outline-2">
+<h2 id="org1fe2cd3">Context Managers</h2>
+<div class="outline-text-2" id="text-org1fe2cd3">
 <p>
 In other languages like Java or Ruby, it&rsquo;s common to use <code>def/ensure</code> or <code>try/finally</code> to acquire a lock on a resource and free it later if exceptions occur. Python has the <code>try/except</code> but there&rsquo;s a better way to do it.
 As an example, I&rsquo;m going to use a virus scanner pyclamd to scan a file.
@@ -126,9 +126,9 @@ that will open and close a connection to the virus scanner without adding extra 
 </div>
 </section>
 
-<section id="outline-container-org7f182f9" class="outline-2">
-<h2 id="org7f182f9">Slicing</h2>
-<div class="outline-text-2" id="text-org7f182f9">
+<section id="outline-container-org6d1e4f8" class="outline-2">
+<h2 id="org6d1e4f8">Slicing</h2>
+<div class="outline-text-2" id="text-org6d1e4f8">
 <p>
 In the previous code, the virus scanner return a dictionary with the file name as key and tuple as value with other information about the scanned file.
 Getting the data isn&rsquo;t clean, simple, and can be confusing for developers if they aren&rsquo;t familiar with the pyclamd tuple structure. There&rsquo;s a simple way to
@@ -188,9 +188,9 @@ it becomes possible to loop through the instance without requiring the results. 
 </div>
 </section>
 
-<section id="outline-container-org83ba7a4" class="outline-2">
-<h2 id="org83ba7a4">Conclusion</h2>
-<div class="outline-text-2" id="text-org83ba7a4">
+<section id="outline-container-org47a4f3e" class="outline-2">
+<h2 id="org47a4f3e">Conclusion</h2>
+<div class="outline-text-2" id="text-org47a4f3e">
 <p>
 I recommend using those tips in your python code and of course, there&rsquo;s much more different way to make your code more Pythonic.
 However, making a code more pythonic doesn&rsquo;t mean it fits for you what&rsquo;s works for me. Use the python idioms to make your code readable
@@ -205,7 +205,7 @@ However, making a code more pythonic doesn&rsquo;t mean it fits for you what&rsq
 <footer id="postamble" class="status">
 <div class='footer'>
   Copyright © 2022 <a href='mailto:burak@demirtas.dev'>Burak Demirtas</a><br>
-  Last updated on Mar 15, 2022. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
+  Last updated on Mar 18, 2022. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
 </div>
 </footer>
 </body>
