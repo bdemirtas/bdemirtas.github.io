@@ -10,6 +10,7 @@ I'm a software developer based in Montreal, Canada. I'm a back-end developer wor
 I'm a new emacser, using for few years now and really impressed about it.
 I've decided not years ago to slowly move my development environment to Emacs and get rid of most of the software I use to use. I decided to use Emacs Vanilla and add my own customization. I couldn't find a existing configration to suit my workflow. My goal for 2021 will be contributing on various open source projects to give back to the community.
 
-If you want to get in contact with me, please send me a [[mailto:burak@demirtas.dev][demirtas.dev]].
+If you want to get in contact with me, please send me a [[mailto:burak@burakdemirtas.io
+][burakdemirtas.io]].
 
 You can download or copy paste [[https://demirtas.dev/pgp-key.txt][my public key]] but you also use this command =gpg --search-keys F3E7B42FDCEF40B9= to add my public from the keyservers

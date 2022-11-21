@@ -1,4 +1,4 @@
-#+EMAIL: burak@demirtas.dev
+#+EMAIL: burak@burakdemirtas.io
 #+OPTIONS: email:t
 #+LATEX_CLASS: article
 #+LATEX_CLASS_OPTIONS:

@@ -1,5 +1,5 @@
 #+title: Publishing org-mode projects on GitHub Pages
-#+author: Burak Demirtas <burak@demirtas.dev>
+#+author: Burak Demirtas <burak@burakdemirtas.io>
 
 Learn more about GitHub Pages at [[https://pages.github.com/]]
 

@@ -1,15 +1,12 @@
 (require 'package)
-(package-initialize)
-(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
 (package-refresh-contents)
 (package-install 'htmlize)
-(package-install 'org-plus-contrib)
 (package-install 'ox-reveal)
 (package-install 'simple-httpd)
 
 (require 'org)
-(require 'ox-publish)
 (require 'ox-reveal)
 
 ;; setting to nil, avoids "Author: x" at the bottom
@@ -157,20 +154,7 @@ publishing directory. Returns output file name."
          :publishing-directory "./public"
          :publishing-function org-publish-attachment
          :recursive t)
-        ("rss"
-         :base-directory "posts"
-         :base-extension "org"
-         :html-link-home "http://demirtas.dev/"
-         :rss-link-home "http://demirtas.dev/"
-         :html-link-use-abs-url t
-         :rss-extension "xml"
-         :publishing-directory "./public"
-         :publishing-function (org-rss-publish-to-rss)
-         :section-number nil
-         :exclude ".*"
-         :include ("index.org")
-         :table-of-contents nil)
-        ("all" :components ("posts" "about" "css" "images" "assets" "files" "rss"))))
+        ("all" :components ("posts" "about" "css" "images" "assets" "files"))))
 
 (provide 'publish)
 ;;; publish.el ends here
