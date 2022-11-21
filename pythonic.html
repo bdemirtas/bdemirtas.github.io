@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Mar 18, 2022 -->
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Nov 21, 2022 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exploiting the features of Python to write code that is clean, concise and maintainable.</title>
-<meta name="author" content="Burak Demirtas" />
-<meta name="generator" content="Org Mode" />
+<meta name="generator" content="Org mode">
+<meta name="author" content="Burak Demirtas">
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <script async src='https://www.googletagmanager.com/gtag/js?id=UA-52304415-1'></script>
 <script>
@@ -20,25 +20,51 @@
 <link rel='stylesheet' href='/css/site.css?v=2' type='text/css'/>
 <link rel='stylesheet' href='/css/custom.css' type='text/css'/>
 <link rel='stylesheet' href='/css/syntax-coloring.css' type='text/css'/>
-<script>
-// @license magnet:?xt=urn:btih:1f739d935676111cfff4b4693e3816e664797050&amp;dn=gpl-3.0.txt GPL-v3-or-Later
-     function CodeHighlightOn(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.add("code-highlighted");
-         target.classList.add("code-highlighted");
-       }
-     }
-     function CodeHighlightOff(elem, id)
-     {
-       var target = document.getElementById(id);
-       if(null != target) {
-         elem.classList.remove("code-highlighted");
-         target.classList.remove("code-highlighted");
-       }
-     }
-// @license-end
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2019 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
 </script>
 </head>
 <body>
@@ -63,14 +89,14 @@
 </ul>
 </div>
 </header>
-<main id="content" class="content">
+<main id="content">
 <header>
 <h1 class="title">Exploiting the features of Python to write code that is clean, concise and maintainable.</h1>
-<p class="subtitle" role="doc-subtitle">Published on Jun 17, 2021 by Burak Demirtas.</p>
+<p class="subtitle">Published on Jun 17, 2021 by Burak Demirtas.</p>
 </header>
-<section id="outline-container-orgde60ca1" class="outline-2">
-<h2 id="orgde60ca1">Pythonic</h2>
-<div class="outline-text-2" id="text-orgde60ca1">
+<section id="outline-container-orgd9d29c8" class="outline-2">
+<h2 id="orgd9d29c8">Pythonic</h2>
+<div class="outline-text-2" id="text-orgd9d29c8">
 <p>
 Writing code isn&rsquo;t hard but writing code that is clean, concise, and maintainable that follows the convention of the Python community is harder. They are a lot of different ways to implement the same function, class, or feature.
 Some of them are clean, sometimes confusing, or really bad writing that is hard to understand what it does exactly but in the end, the goal is to have a code that follows and naturally flows more in Python conventions and good practices.
@@ -80,9 +106,9 @@ That&rsquo;s what I&rsquo;m going to try to help to write pythonic code and some
 </div>
 </section>
 
-<section id="outline-container-org1fe2cd3" class="outline-2">
-<h2 id="org1fe2cd3">Context Managers</h2>
-<div class="outline-text-2" id="text-org1fe2cd3">
+<section id="outline-container-org0642f38" class="outline-2">
+<h2 id="org0642f38">Context Managers</h2>
+<div class="outline-text-2" id="text-org0642f38">
 <p>
 In other languages like Java or Ruby, it&rsquo;s common to use <code>def/ensure</code> or <code>try/finally</code> to acquire a lock on a resource and free it later if exceptions occur. Python has the <code>try/except</code> but there&rsquo;s a better way to do it.
 As an example, I&rsquo;m going to use a virus scanner pyclamd to scan a file.
@@ -126,9 +152,9 @@ that will open and close a connection to the virus scanner without adding extra 
 </div>
 </section>
 
-<section id="outline-container-org6d1e4f8" class="outline-2">
-<h2 id="org6d1e4f8">Slicing</h2>
-<div class="outline-text-2" id="text-org6d1e4f8">
+<section id="outline-container-org12a5953" class="outline-2">
+<h2 id="org12a5953">Slicing</h2>
+<div class="outline-text-2" id="text-org12a5953">
 <p>
 In the previous code, the virus scanner return a dictionary with the file name as key and tuple as value with other information about the scanned file.
 Getting the data isn&rsquo;t clean, simple, and can be confusing for developers if they aren&rsquo;t familiar with the pyclamd tuple structure. There&rsquo;s a simple way to
@@ -188,9 +214,9 @@ it becomes possible to loop through the instance without requiring the results. 
 </div>
 </section>
 
-<section id="outline-container-org47a4f3e" class="outline-2">
-<h2 id="org47a4f3e">Conclusion</h2>
-<div class="outline-text-2" id="text-org47a4f3e">
+<section id="outline-container-orgbd94f90" class="outline-2">
+<h2 id="orgbd94f90">Conclusion</h2>
+<div class="outline-text-2" id="text-orgbd94f90">
 <p>
 I recommend using those tips in your python code and of course, there&rsquo;s much more different way to make your code more Pythonic.
 However, making a code more pythonic doesn&rsquo;t mean it fits for you what&rsquo;s works for me. Use the python idioms to make your code readable
@@ -204,8 +230,8 @@ However, making a code more pythonic doesn&rsquo;t mean it fits for you what&rsq
 </main>
 <footer id="postamble" class="status">
 <div class='footer'>
-  Copyright © 2022 <a href='mailto:burak@demirtas.dev'>Burak Demirtas</a><br>
-  Last updated on Mar 18, 2022. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.4.6).
+  Copyright © 2022 <a href='mailto:burak@burakdemirtas.io'>Burak Demirtas</a><br>
+  Last updated on Nov 21, 2022. Generated using <a href="https://www.gnu.org/software/emacs/">Emacs</a> 26.3 (<a href="https://orgmode.org">Org</a> mode 9.1.9).
 </div>
 </footer>
 </body>
